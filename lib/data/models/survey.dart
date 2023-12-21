@@ -1,5 +1,21 @@
 import 'package:synapsis_survey_app/domain/entities/survey.dart';
 
+class SurveyModelWrapper {
+  final List<SurveyModel>? data;
+
+  const SurveyModelWrapper({
+    this.data,
+  });
+
+  factory SurveyModelWrapper.fromJson(Map<String, dynamic> map) {
+    return SurveyModelWrapper(
+        data: map['data'] == null
+            ? null
+            : List<SurveyModel>.from(
+                map['data']?.map((x) => SurveyModel.fromJson(x))));
+  }
+}
+
 class SurveyModel extends SurveyEntity {
   const SurveyModel({
     String? surveyId,
