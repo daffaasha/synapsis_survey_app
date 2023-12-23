@@ -1,52 +1,51 @@
 import 'dart:convert';
 
+import 'package:dio/dio.dart';
 import 'package:synapsis_survey_app/core/constants/constant.dart';
 import 'package:http/http.dart' as http;
 
 class ApiService {
   final baseUrl = BASE_URL;
+  final Dio dio;
 
-  const ApiService();
+  const ApiService(this.dio);
 
   Future<ApiResponse> login(String email, String password) async {
-    final uri = Uri.parse("$baseUrl/login");
-    final response = await http.post(
-      uri,
-      body: {
+    final url = "$baseUrl/login";
+    final response = await dio.post(
+      url,
+      data: {
         "nik": email,
         "password": password,
       },
     );
-    final data = jsonDecode(response.body);
 
     return ApiResponse(
       statusCode: response.statusCode,
-      data: data,
-      errorMessage: data["message"],
+      data: response.data,
+      errorMessage: response.data["message"],
     );
   }
 
   Future<ApiResponse> getSurveyList({int page = 1, int limit = 10}) async {
-    final uri = Uri.parse("$baseUrl/assessments?page=$page&limit=$limit");
-    final response = await http.get(uri);
-    final data = jsonDecode(response.body);
+    final url = "$baseUrl/assessments?page=$page&limit=$limit";
+    final response = await dio.get(url);
 
     return ApiResponse(
       statusCode: response.statusCode,
-      data: data,
-      errorMessage: data["message"],
+      data: response.data,
+      errorMessage: response.data["message"],
     );
   }
 
   Future<ApiResponse> getSurveyDetail(String surveyId) async {
-    final uri = Uri.parse("$baseUrl/assessments/$surveyId");
-    final response = await http.get(uri);
-    final data = jsonDecode(response.body);
+    final url = "$baseUrl/assessments/$surveyId";
+    final response = await dio.get(url);
 
     return ApiResponse(
       statusCode: response.statusCode,
-      data: data,
-      errorMessage: data["message"],
+      data: response.data,
+      errorMessage: response.data["message"],
     );
   }
 }

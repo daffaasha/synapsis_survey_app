@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:dio/dio.dart';
 import 'package:synapsis_survey_app/core/resource/data_state.dart';
 import 'package:synapsis_survey_app/data/data_sources/remote/survey_api.dart';
 import 'package:synapsis_survey_app/data/models/survey.dart';
@@ -25,8 +26,8 @@ class RepositoryImpl implements Repository {
           "Error ${response.statusCode}: ${response.errorMessage}",
         );
       }
-    } catch (e) {
-      throw Exception(e);
+    } on DioException catch (e) {
+      return DataError(e.response?.data["message"]!);
     }
   }
 
@@ -41,8 +42,8 @@ class RepositoryImpl implements Repository {
           "Error ${response.statusCode}: ${response.errorMessage}",
         );
       }
-    } catch (e) {
-      throw Exception(e);
+    } on DioException catch (e) {
+      return DataError(e.response?.data["message"]!);
     }
   }
 
@@ -57,8 +58,8 @@ class RepositoryImpl implements Repository {
           "Error ${response.statusCode}: ${response.errorMessage}",
         );
       }
-    } catch (e) {
-      throw Exception(e);
+    } on DioException catch (e) {
+      return DataError(e.response?.data["message"]!);
     }
   }
 }
