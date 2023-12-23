@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:synapsis_survey_app/config/theme/color.dart';
 import 'package:synapsis_survey_app/config/theme/dimens.dart';
+import 'package:synapsis_survey_app/injection_container.dart';
 import 'package:synapsis_survey_app/presentation/bloc/login_page_bloc/authentication_bloc/authentication_bloc.dart';
 import 'package:synapsis_survey_app/presentation/bloc/login_page_bloc/login_bloc/login_bloc.dart';
 import 'package:synapsis_survey_app/presentation/widget/survey_outlined_button.dart';
@@ -13,8 +14,16 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: _buildBody(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<LoginBloc>(create: (loginContext) => LoginBloc()),
+        BlocProvider<AuthenticationBloc>(
+          create: (authContext) => sl<AuthenticationBloc>(),
+        ),
+      ],
+      child: Scaffold(
+        body: _buildBody(),
+      ),
     );
   }
 
@@ -53,7 +62,7 @@ class LoginPage extends StatelessWidget {
   }
 
   void _goToHome(BuildContext context) {
-    Navigator.pushNamed(context, '/Home');
+    Navigator.popAndPushNamed(context, '/Home', arguments: true);
   }
 
   _buildTitle() {

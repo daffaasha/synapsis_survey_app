@@ -12,3 +12,11 @@ class Login extends AuthenticationEvent {
   const Login(
       {required this.email, required this.password, required this.rememberMe});
 }
+
+class Logout extends AuthenticationEvent {
+  const Logout();
+}
+
+class CheckLogin extends AuthenticationEvent {
+  const CheckLogin();
+}

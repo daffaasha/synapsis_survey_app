@@ -4,22 +4,47 @@ import 'package:synapsis_survey_app/config/theme/color.dart';
 import 'package:synapsis_survey_app/config/theme/dimens.dart';
 import 'package:synapsis_survey_app/domain/entities/survey.dart';
 import 'package:synapsis_survey_app/injection_container.dart';
+import 'package:synapsis_survey_app/presentation/bloc/login_page_bloc/authentication_bloc/authentication_bloc.dart';
 import 'package:synapsis_survey_app/presentation/bloc/survey_bloc/survey_bloc.dart';
 import 'package:synapsis_survey_app/presentation/widget/survey_card.dart';
-import 'package:intl/intl.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+  final bool isLoggedIn;
+
+  const HomePage({super.key, this.isLoggedIn = false});
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => sl<SurveyBloc>()..add(const GetSurveyListEvent()),
-      child: Scaffold(
-        appBar: _buildAppBar(context),
-        body: _buildBody(),
-      ),
-    );
+    return MultiBlocProvider(
+        providers: [
+          BlocProvider<SurveyBloc>(
+            create: (context) => sl<SurveyBloc>(),
+          ),
+          BlocProvider<AuthenticationBloc>(
+            create: (create) =>
+                sl<AuthenticationBloc>()..add(const CheckLogin()),
+          ),
+        ],
+        child: Scaffold(
+          appBar: _buildAppBar(context),
+          body: BlocListener<AuthenticationBloc, AuthenticationState>(
+            listener: (blocContext, state) {
+              if (state is AuthenticationAuthenticated || isLoggedIn) {
+                BlocProvider.of<SurveyBloc>(blocContext)
+                    .add(const GetSurveyListEvent());
+              } else if (state is AuthenticationError) {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text(state.error!),
+                    backgroundColor: Colors.red,
+                  ),
+                );
+                Navigator.popAndPushNamed(context, '/Login');
+              }
+            },
+            child: _buildBody(),
+          ),
+        ));
   }
 
   _buildAppBar(BuildContext context) {
@@ -38,10 +63,17 @@ class HomePage extends StatelessWidget {
       actions: [
         Padding(
           padding: const EdgeInsets.only(right: smallPadding2),
-          child: IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.logout, color: Colors.black),
-          ),
+          child: BlocBuilder<AuthenticationBloc, AuthenticationState>(
+              builder: (context, state) {
+            return IconButton(
+              onPressed: () {
+                BlocProvider.of<AuthenticationBloc>(context)
+                    .add(const Logout());
+                Navigator.popAndPushNamed(context, '/Login');
+              },
+              icon: const Icon(Icons.logout, color: Colors.black),
+            );
+          }),
         )
       ],
     );

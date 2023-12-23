@@ -5,11 +5,11 @@ import 'package:synapsis_survey_app/presentation/pages/login/login_page.dart';
 class AppRoute {
   static Route onGeneralRoutes(RouteSettings settings) {
     switch (settings.name) {
-      case '/':
+      case '/Login':
         return _materialRoute(const LoginPage());
 
       case '/Home':
-        return _materialRoute(const HomePage());
+        return _materialRoute(HomePage(isLoggedIn: settings.arguments as bool));
 
       default:
         return _materialRoute(const LoginPage());
