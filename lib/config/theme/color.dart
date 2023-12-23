@@ -9,5 +9,8 @@ const Color gray = Color(0xFF757575);
 
 const Color softGray = Color(0xFFB9B9B9);
 const Color softGray2 = Color(0xFFFBFBFB);
+const Color softGray3 = Color(0xFFD9D9D9);
 
 const Color red = Color(0xFFE74C3C);
+
+const Color green = Color(0xFF107C41);

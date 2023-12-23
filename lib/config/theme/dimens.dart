@@ -1,5 +1,6 @@
 const smallPadding1 = 8.0;
 const smallPadding2 = 12.0;
+const smallPadding3 = 16.0;
 
 const mediumPadding1 = 24.0;
 const mediumPadding2 = 32.0;
