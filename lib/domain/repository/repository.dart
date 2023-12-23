@@ -9,4 +9,11 @@ abstract class Repository {
   Future<DataState<List<SurveyEntity>>> getSurveyList();
 
   Future<DataState<SurveyDetailEntity>> getSurveyDetail(String? surveyId);
+
+  Future<void> saveUser(
+      String userId, String userName, String email, String phone);
+
+  Future<void> deleteUser();
+
+  Future<UserEntity> getUser();
 }
