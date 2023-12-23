@@ -10,7 +10,7 @@ class SurveyModelWrapper {
   factory SurveyModelWrapper.fromJson(Map<String, dynamic> map) {
     return SurveyModelWrapper(
         data: map['data'] == null
-            ? null
+            ? List<SurveyModel>.empty()
             : List<SurveyModel>.from(
                 map['data']?.map((x) => SurveyModel.fromJson(x))));
   }
@@ -31,10 +31,10 @@ class SurveyModel extends SurveyEntity {
 
   factory SurveyModel.fromJson(Map<String, dynamic> map) {
     return SurveyModel(
-      surveyId: map['survey_id'] ?? "",
-      surveyName: map['survey_name'] ?? "",
+      surveyId: map['id'] ?? "",
+      surveyName: map['name'] ?? "",
       createdAt: map['created_at'] ?? "",
-      surveyImage: map['survey_image'] ?? "",
+      surveyImage: map['image'] ?? "",
     );
   }
 }
