@@ -1,8 +1,5 @@
-import 'dart:convert';
-
 import 'package:dio/dio.dart';
 import 'package:synapsis_survey_app/core/constants/constant.dart';
-import 'package:http/http.dart' as http;
 
 class ApiService {
   final baseUrl = BASE_URL;
@@ -39,7 +36,7 @@ class ApiService {
   }
 
   Future<ApiResponse> getSurveyDetail(String surveyId) async {
-    final url = "$baseUrl/assessments/$surveyId";
+    final url = "$baseUrl/assessments/question/$surveyId";
     final response = await dio.get(url);
 
     return ApiResponse(
