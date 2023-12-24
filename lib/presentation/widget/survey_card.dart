@@ -31,15 +31,20 @@ class SurveyCard extends StatelessWidget {
                 vertical: smallPadding2, horizontal: smallPadding3),
             child: Row(
               children: [
-                CachedNetworkImage(
-                  height: 70,
-                  width: 70,
-                  imageUrl: survey.surveyImage!,
-                  placeholder: (context, url) => const Center(
-                    child: CircularProgressIndicator(),
-                  ),
-                  errorWidget: (context, url, error) => const Icon(Icons.error),
-                ),
+                survey.surveyImage == null || survey.surveyImage!.isEmpty
+                    ? Image.asset(
+                        "assets/images/survey_placeholder.png",
+                        height: 70,
+                        width: 70,
+                      )
+                    : CachedNetworkImage(
+                        height: 70,
+                        width: 70,
+                        imageUrl: survey.surveyImage!,
+                        placeholder: (context, url) => const Center(
+                          child: CircularProgressIndicator(),
+                        ),
+                      ),
                 const SizedBox(
                   width: smallPadding2,
                 ),
