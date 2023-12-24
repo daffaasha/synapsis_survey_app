@@ -23,6 +23,7 @@ class LoginPage extends StatelessWidget {
       ],
       child: Scaffold(
         body: _buildBody(),
+        resizeToAvoidBottomInset: false,
       ),
     );
   }
