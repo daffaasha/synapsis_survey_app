@@ -5,7 +5,7 @@ class QuestionModel extends QuestionEntity {
       {String? questionId,
       String? questionName,
       String? type,
-      List<QuestionEntity>? options})
+      List<OptionModel>? options})
       : super(
           questionId: questionId,
           questionName: questionName,
@@ -19,7 +19,7 @@ class QuestionModel extends QuestionEntity {
       questionName: map['question_name'] ?? "",
       type: map['type'] ?? "",
       options: map['options'] != null
-          ? List<QuestionEntity>.from(
+          ? List<OptionModel>.from(
               map['options']?.map((x) => OptionModel.fromJson(x)))
           : [],
     );

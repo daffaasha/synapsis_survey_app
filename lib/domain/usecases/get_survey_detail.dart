@@ -7,7 +7,7 @@ class GetSurveyDetailUseCase {
 
   GetSurveyDetailUseCase(this._repository);
 
-  Future<DataState<SurveyDetailEntity>> call(String? token, String? surveyId) {
+  Future<DataState<SurveyDetailEntity>> call(String? surveyId) {
     return _repository.getSurveyDetail(surveyId);
   }
 }

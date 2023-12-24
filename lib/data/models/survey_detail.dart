@@ -31,10 +31,10 @@ class SurveyDetailModel extends SurveyDetailEntity {
     return SurveyDetailModel(
       surveyId: map['id'] ?? "",
       surveyName: map['name'] ?? "",
-      questions: map['question'] != null
-          ? List<QuestionModel>.from(
-              map['questions']?.map((x) => QuestionModel.fromJson(x)))
-          : [],
+      questions: map['question'] == null
+          ? []
+          : List<QuestionModel>.from(
+              map['question']?.map((x) => QuestionModel.fromJson(x))),
     );
   }
 }

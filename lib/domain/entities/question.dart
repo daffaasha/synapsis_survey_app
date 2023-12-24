@@ -4,7 +4,7 @@ class QuestionEntity extends Equatable {
   final String? questionId;
   final String? questionName;
   final String? type;
-  final List<QuestionEntity>? options;
+  final List<OptionEntity>? options;
 
   const QuestionEntity({
     this.questionId,
