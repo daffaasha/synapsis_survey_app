@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:synapsis_survey_app/config/theme/color.dart';
 import 'package:synapsis_survey_app/config/theme/dimens.dart';
 import 'package:synapsis_survey_app/domain/entities/survey.dart';
 import 'package:synapsis_survey_app/injection_container.dart';
@@ -33,12 +32,6 @@ class HomePage extends StatelessWidget {
                 BlocProvider.of<SurveyBloc>(blocContext)
                     .add(const GetSurveyListEvent());
               } else if (state is AuthenticationError) {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text(state.error!),
-                    backgroundColor: Colors.red,
-                  ),
-                );
                 Navigator.popAndPushNamed(context, '/Login');
               }
             },
@@ -109,9 +102,8 @@ class HomePage extends StatelessWidget {
           return SurveyCard(
             survey: survey,
             onClick: (value) => {
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(content: Text(value), backgroundColor: green),
-              )
+              Navigator.pushNamed(context, '/Detail',
+                  arguments: survey.surveyId)
             },
           );
         },
