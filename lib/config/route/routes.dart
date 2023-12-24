@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:synapsis_survey_app/presentation/pages/home/home_page.dart';
 import 'package:synapsis_survey_app/presentation/pages/login/login_page.dart';
+import 'package:synapsis_survey_app/presentation/pages/survey/survey_page.dart';
 
 class AppRoute {
   static Route onGeneralRoutes(RouteSettings settings) {
@@ -10,6 +11,11 @@ class AppRoute {
 
       case '/Home':
         return _materialRoute(HomePage(isLoggedIn: settings.arguments as bool));
+
+      case '/Detail':
+        return _materialRoute(SurveyPage(
+          surveyId: settings.arguments as String,
+        ));
 
       default:
         return _materialRoute(const LoginPage());
