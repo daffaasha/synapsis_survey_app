@@ -51,15 +51,12 @@ class AuthenticationBloc
     final email = user.email!;
     if (email.isNotEmpty) {
       emit(AuthenticationAuthenticated(user));
-      print("User From Hive");
     }
 
     if (state is AuthenticationAuthenticated) {
       emit(AuthenticationAuthenticated(state.user!));
-      print("User From Login");
     } else {
       emit(const AuthenticationError("User not found"));
-      print("User Not Login");
     }
   }
 

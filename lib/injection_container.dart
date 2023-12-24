@@ -17,7 +17,7 @@ import 'package:synapsis_survey_app/domain/usecases/get_survey_detail.dart';
 import 'package:synapsis_survey_app/domain/usecases/get_user.dart';
 import 'package:synapsis_survey_app/domain/usecases/login.dart';
 import 'package:synapsis_survey_app/domain/usecases/save_user.dart';
-import 'package:synapsis_survey_app/presentation/bloc/login_page_bloc/authentication_bloc/authentication_bloc.dart';
+import 'package:synapsis_survey_app/presentation/bloc/authentication_bloc/authentication_bloc.dart';
 import 'package:synapsis_survey_app/presentation/bloc/survey_bloc/survey_bloc.dart';
 
 final sl = GetIt.instance;

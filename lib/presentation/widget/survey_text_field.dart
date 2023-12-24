@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:synapsis_survey_app/config/theme/color.dart';
-import 'package:synapsis_survey_app/presentation/bloc/login_page_bloc/login_bloc/login_bloc.dart';
+import 'package:synapsis_survey_app/presentation/bloc/login_bloc/login_bloc.dart';
 
 class SurveyTextField extends StatelessWidget {
   final String? hintText;

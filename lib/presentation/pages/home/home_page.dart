@@ -4,7 +4,7 @@ import 'package:synapsis_survey_app/config/theme/color.dart';
 import 'package:synapsis_survey_app/config/theme/dimens.dart';
 import 'package:synapsis_survey_app/domain/entities/survey.dart';
 import 'package:synapsis_survey_app/injection_container.dart';
-import 'package:synapsis_survey_app/presentation/bloc/login_page_bloc/authentication_bloc/authentication_bloc.dart';
+import 'package:synapsis_survey_app/presentation/bloc/authentication_bloc/authentication_bloc.dart';
 import 'package:synapsis_survey_app/presentation/bloc/survey_bloc/survey_bloc.dart';
 import 'package:synapsis_survey_app/presentation/widget/survey_card.dart';
 
