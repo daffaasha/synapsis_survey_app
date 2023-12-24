@@ -1,11 +1,6 @@
-import 'dart:io';
-
 import 'package:dio/dio.dart';
-import 'package:dio_cookie_manager/dio_cookie_manager.dart';
-import 'package:cookie_jar/cookie_jar.dart';
 import 'package:get_it/get_it.dart';
 import 'package:hive/hive.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:synapsis_survey_app/data/data_sources/local/user_pref.dart';
 import 'package:synapsis_survey_app/data/data_sources/remote/dio_config.dart';
 import 'package:synapsis_survey_app/data/data_sources/remote/survey_api.dart';
@@ -19,6 +14,7 @@ import 'package:synapsis_survey_app/domain/usecases/login.dart';
 import 'package:synapsis_survey_app/domain/usecases/save_user.dart';
 import 'package:synapsis_survey_app/presentation/bloc/authentication_bloc/authentication_bloc.dart';
 import 'package:synapsis_survey_app/presentation/bloc/survey_bloc/survey_bloc.dart';
+import 'package:synapsis_survey_app/presentation/bloc/survey_detail/survey_detail_bloc.dart';
 
 final sl = GetIt.instance;
 
@@ -57,4 +53,6 @@ Future<void> initializeDependencies() async {
   sl.registerFactory(() => AuthenticationBloc(sl(), sl(), sl(), sl()));
 
   sl.registerFactory(() => SurveyBloc(sl()));
+
+  sl.registerFactory(() => SurveyDetailBloc(sl()));
 }
