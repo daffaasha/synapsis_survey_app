@@ -23,6 +23,7 @@ class SurveyPrimaryButton extends StatelessWidget {
       child: ElevatedButton(
         onPressed: onClick,
         style: ElevatedButton.styleFrom(
+          elevation: 0,
           backgroundColor: primaryBlue,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(4),
